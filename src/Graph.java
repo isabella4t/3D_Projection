@@ -32,45 +32,49 @@ public class Graph {
         for(Edge e: edges) this.edges.add(e);
     }
 
-    /*
-    public void rotateX(int theta){
-        for(Vertex n: vertices){
-            int[] temp = new int[]{n.getArr()[1],n.getArr()[2]};
-            double[][] rota = new double[][]{{Math.cos(theta),-Math.sin(theta)},{Math.sin(theta),Math.cos(theta)}};
-
-
-            n = new Vertex(n.getArr()[0], )//transformed y and transformed z)
-        }
-
-    }
-
-     */
-
-    public void rotateY(int theta){
-
-
-    }
-    public void rotateZ(int theta){
-
-
-    }
-
-
-    public static int[][] multiply(int[][] fir, int[][] sec) {
+    //TODO: Rotation of points!
+    //matrix multiplication for rotation
+    public static int[] multiply(int[] fir, double[][] sec) {
         //new array is row length in first by column length in second
-        int[][] newarr = new int[fir.length][sec[0].length];
+        int[] newarr = new int[fir.length];
         int acc = 0;
 
-        for (int i = 0; i < fir.length; i++) {
-            for (int j = 0; j < sec[0].length; j++) {
-                for (int l = 0; l < fir[0].length; l++) {
-                    newarr[i][j] += fir[i][l] * sec[l][j];
+        for (int l = 0; l<sec.length;l++){
+                for (int j = 0; j < sec[0].length; j++) {
+                        newarr[l] += fir[j]*sec[l][j];
                 }
-            }
         }
         return newarr;
     }
 
+    public Vertex rotateX(int theta,Vertex n){
+            int[] temp = new int[]{n.getArr()[1],n.getArr()[2]};
+            double[][] rota = new double[][]{{Math.cos(theta),-Math.sin(theta)},{Math.sin(theta),Math.cos(theta)}};
+
+            int[] transformedcoords = multiply(temp,rota);
+
+            return new Vertex(n.getArr()[0],transformedcoords[0],transformedcoords[1]);
+
+    }
+
+    public Vertex rotateY(int theta, Vertex n){
+        int[] temp = new int[]{n.getArr()[0],n.getArr()[2]};
+        double[][] rota = new double[][]{{Math.cos(theta),Math.sin(theta)},{-Math.sin(theta),Math.cos(theta)}};
+
+        int[] transformedcoords = multiply(temp,rota);
+
+        return new Vertex(transformedcoords[0],n.getArr()[1],transformedcoords[1]);
+
+    }
+    public Vertex rotateZ(int theta, Vertex n){
+        int[] temp = new int[]{n.getArr()[0],n.getArr()[1]};
+        double[][] rota = new double[][]{{Math.cos(theta),Math.sin(theta)},{-Math.sin(theta),Math.cos(theta)}};
+
+        int[] transformedcoords = multiply(temp,rota);
+
+        return new Vertex(transformedcoords[0],transformedcoords[1],n.getArr()[2]);
+
+    }
 
     public String toString(){
         String ret = "The graph: \n";

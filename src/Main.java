@@ -77,4 +77,22 @@ public class Main {
 
      */
 
+    /*
+    3/27/23 I am confused
+
+    [1, 1]  [1] = 1
+            [0]
+    dotprod of A and B
+
+
+    1 * [1,0]
+
+    B/(length of B)
+
+So C = {dot prod * B / root (b[1],b[2],b[3])
+
+
+
+     */
+
 }
