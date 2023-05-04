@@ -1,14 +1,24 @@
+import java.awt.*;
+import java.util.HashSet;
+import java.util.Set;
+
+
+//add turtle
 public class Main {
     public static void main(String[] args) {
+        int degree = 45;
 
-        int[] P0 = {0,0,0};
-        int[] L0 = {0,0,10};
-        int[] l = {0,0,10};
-        int[] n = {0,0,0};
-        int ne = 1;
+        Set<Vertex> vertices = new HashSet<Vertex>();
+        vertices.add(new Vertex(1,0,0));
+        vertices.add(new Vertex(0,0,10));
+        vertices.add(new Vertex(1,1,10));
+        vertices.add(new Vertex(0,1,0));
 
-
+        Graph gee = new Graph(vertices);
+        gee.rotating(gee[0]);
     }
+
+    /*
 
     public static void Findintersection(int[] p, int[] l0, int[] n, int[] l, int ne){
         int[] ee = {p[0]-l0[0],p[1]-l0[1],p[2]-l0[2]};
@@ -25,24 +35,13 @@ public class Main {
 
     }
 
-    public static int[] multiply(int[] fir, int[][] sec) {
-        //new array is row length in first by column length in second
-        int[] newarr = new int[sec[0].length];
-        int acc = 0;
-            for (int j = 0; j < sec[0].length; j++) {
-                for (int l = 0; l < fir.length; l++) {
-                    newarr[j] += fir[l] * sec[l][j];
-                }
-            }
-        return newarr;
+     */
 
-    }
 
-    public static int[][] divide(int[] n, int[] l){
+    //How to make circle
+    /*
 
-    }
-
-    public static int[] ellipse(int v0, int v1, int v2, int v3, int v4, int[] arr){
+     public static int[] ellipse(int v0, int v1, int v2, int v3, int v4, int[] arr){
         int[] gee = {v0,v1,v2,v3,v4};
         int[][] arrt = new int[1][5];
         for (int i =0; i<arr.length;i++){
@@ -51,9 +50,6 @@ public class Main {
         int[] retva = multiply(gee,arrt);
         return retva;
     }
-
-    //How to make circle
-    /*
 
     make an equation like ax^2 + bxy + cy^2 + dy + e =0
 

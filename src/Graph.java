@@ -24,7 +24,7 @@ public class Graph {
     private Set<Vertex> vertices;
     private Set<Edge> edges;
 
-    public Graph(Set<Vertex> nodes ,Set<Edge> edges){
+    public Graph(Set<Vertex> vertices ,Set<Edge> edges){
         this.vertices = new HashSet<Vertex>();
         this.edges = new HashSet<Edge>();
 
@@ -32,7 +32,23 @@ public class Graph {
         for(Edge e: edges) this.edges.add(e);
     }
 
+    public Graph(Set<Vertex> vertices){
+        this.vertices = new HashSet<Vertex>();
+
+        for(Vertex n: vertices) this.vertices.add(n);
+    }
+
     //TODO: Rotation of points!
+    public Vertex rotating(Vertex n, int x, int y, int z){
+        Vertex ret = n;
+        ret = rotateX(x,ret);
+        ret = rotateY(y,ret);
+        ret = rotateZ(z,ret);
+        return ret;
+    }
+
+
+
     //matrix multiplication for rotation
     public static int[] multiply(int[] fir, double[][] sec) {
         //new array is row length in first by column length in second
